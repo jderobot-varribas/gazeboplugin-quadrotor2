@@ -37,6 +37,11 @@ public:
 
     void takeoff();
     void land();
+    void setTargetVelocity(gazebo::math::Twist twist);
+
+/// Control
+protected:
+    void _control_loop_novel(const gazebo::common::UpdateInfo & _info);
 
 private:
     double mass;

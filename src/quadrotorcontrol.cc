@@ -50,6 +50,34 @@ QuadrotorControl::Init(){
 
 void
 QuadrotorControl::OnUpdate(const gazebo::common::UpdateInfo & _info){
+    _control_loop_novel(_info);
+}
+
+
+void
+QuadrotorControl::takeoff(){
+    if (my_state == QuadrotorState::Landed || my_state == QuadrotorState::Landing){
+        my_state = QuadrotorState::TakingOff;
+        std::cout << "QuadrotorState::TakingOff" << std::endl;
+    }
+}
+
+void
+QuadrotorControl::land(){
+    if (my_state == QuadrotorState::Flying || my_state == QuadrotorState::TakingOff){
+        my_state = QuadrotorState::Landing;
+        std::cout << "QuadrotorState::Landing" << std::endl;
+    }
+}
+
+void
+QuadrotorControl::setTargetVelocity(Twist twist){
+    velocity_command = twist;
+}
+
+
+void
+QuadrotorControl::_control_loop_novel(const gazebo::common::UpdateInfo & _info){
     //// Forces and velocities are handled bt a physics engine
     /// This means that we must apply a counter-gravity force
     /// each cicle to model "fly" state.
@@ -110,21 +138,4 @@ QuadrotorControl::OnUpdate(const gazebo::common::UpdateInfo & _info){
     case Flying: land() break;
     }
 #endif
-}
-
-
-void
-QuadrotorControl::takeoff(){
-    if (my_state == QuadrotorState::Landed || my_state == QuadrotorState::Landing){
-        my_state = QuadrotorState::TakingOff;
-        std::cout << "QuadrotorState::TakingOff" << std::endl;
-    }
-}
-
-void
-QuadrotorControl::land(){
-    if (my_state == QuadrotorState::Flying || my_state == QuadrotorState::TakingOff){
-        my_state = QuadrotorState::Landing;
-        std::cout << "QuadrotorState::Landing" << std::endl;
-    }
 }
