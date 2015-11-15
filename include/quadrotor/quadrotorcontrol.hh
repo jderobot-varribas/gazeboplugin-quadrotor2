@@ -24,6 +24,8 @@
 #include <gazebo/common/common.hh>
 #include <gazebo/physics/physics.hh>
 
+#include <quadrotor/control/twist.hh>
+
 
 namespace quadrotor{
 
@@ -46,6 +48,7 @@ protected:
 private:
     double mass;
     QuadrotorState my_state;
+    gazebo::math::Twist velocity_command;
 
 
 /// Gazebo
