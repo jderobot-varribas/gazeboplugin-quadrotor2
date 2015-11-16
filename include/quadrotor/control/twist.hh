@@ -26,10 +26,11 @@
 namespace gazebo{
 namespace math{
 
-typedef struct Twist_{
-    gazebo::math::Vector3 linear;
-    gazebo::math::Vector3 angular;
-}Twist;
+class Twist {
+public:
+    Vector3 linear;
+    Vector3 angular;
+};
 
 }}//NS
 
