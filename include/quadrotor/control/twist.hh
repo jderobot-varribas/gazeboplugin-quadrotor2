@@ -28,8 +28,8 @@ namespace math{
 
 class Twist {
 public:
-    Vector3 linear;
-    Vector3 angular;
+//    Vector3 linear;
+//    Vector3 angular;
 };
 
 }}//NS
