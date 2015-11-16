@@ -24,8 +24,15 @@
 #include <gazebo/common/common.hh>
 #include <gazebo/physics/physics.hh>
 
-#include <quadrotor/control/twist.hh>
-
+//#include <quadrotor/control/twist.hh>
+namespace gazebo{
+namespace math{
+class Twist{
+public:
+//    Vector3 linear;
+//    Vector3 angular;
+};
+}}
 
 namespace quadrotor{
 
