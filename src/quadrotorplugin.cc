@@ -47,7 +47,7 @@ QuadrotorPlugin::Load(ModelPtr _model, sdf::ElementPtr _sdf){
     updateConnection = Events::ConnectWorldUpdateBegin(
         boost::bind(&QuadrotorPlugin::OnUpdate, this, _1));
 
-    this->InitializeIce(_sdf);
+//    this->InitializeIce(_sdf);
 }
 
 
@@ -64,7 +64,7 @@ std::cout << "QuadrotorPlugin::Init()" << std::endl;
 
     control.Init();
 
-    icePlugin->start();
+//    icePlugin->start();
 }
 
 

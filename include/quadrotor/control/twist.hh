@@ -21,6 +21,7 @@
 #ifndef TWIST_HH
 #define TWIST_HH
 
+#include <gazebo/gazebo.hh>
 #include <gazebo/math/Vector3.hh>
 
 namespace gazebo{
@@ -28,8 +29,10 @@ namespace math{
 
 class Twist {
 public:
-//    Vector3 linear;
-//    Vector3 angular;
+    Twist(){}
+    ~Twist(){}
+    Vector3 linear;
+    Vector3 angular;
 };
 
 }}//NS

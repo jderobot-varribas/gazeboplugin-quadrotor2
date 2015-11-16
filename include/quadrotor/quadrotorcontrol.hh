@@ -24,7 +24,13 @@
 #include <gazebo/common/common.hh>
 #include <gazebo/physics/physics.hh>
 
-#include <quadrotor/control/twist.hh>
+//#include <quadrotor/control/twist.hh>
+namespace gazebo{
+namespace math{
+typedef struct TwistKK{
+    std::string kk;
+} TwistKK_t;
+}}
 
 
 namespace quadrotor{
@@ -39,7 +45,7 @@ public:
 
     void takeoff();
     void land();
-    void setTargetVelocity(gazebo::math::Twist twist);
+//    void setTargetVelocity(gazebo::math::Twist twist);
 
 /// Control
 protected:
@@ -48,7 +54,7 @@ protected:
 private:
     double mass;
     QuadrotorState my_state;
-    gazebo::math::Twist velocity_command;
+    gazebo::math::TwistKK_t velocity_command;
 
 
 /// Gazebo

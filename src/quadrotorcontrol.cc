@@ -70,10 +70,10 @@ QuadrotorControl::land(){
     }
 }
 
-void
-QuadrotorControl::setTargetVelocity(Twist twist){
-    velocity_command = twist;
-}
+//void
+//QuadrotorControl::setTargetVelocity(Twist twist){
+//    velocity_command = twist;
+//}
 
 
 void

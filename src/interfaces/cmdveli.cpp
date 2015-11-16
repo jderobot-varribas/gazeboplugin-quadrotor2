@@ -35,11 +35,11 @@ CMDVelI::~CMDVelI ()
 
 Ice::Int
 CMDVelI::setCMDVelData(const jderobot::CMDVelDataPtr& data, const Ice::Current&){
-	Twist twist_cmd;
+    TwistKK_t twist_cmd;
 //	twist_cmd.linear = Vector3(data->linearX, data->linearY, data->linearZ);
 //	twist_cmd.angular = Vector3(data->angularX, data->angularY, data->angularZ);
 
-	control->setTargetVelocity(twist_cmd);
+//	control->setTargetVelocity(twist_cmd);
 
 	return 0;
 }
