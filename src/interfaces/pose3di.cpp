@@ -55,3 +55,12 @@ Pose3DI::setPose3DData ( const jderobot::Pose3DDataPtr & /*data*/,
     //ToDo: control
     return 0;
 }
+
+
+Pose3DDataPtr
+Pose3DI_altitude::getPose3DData ( const Ice::Current& c){
+    Pose3DI::getPose3DData(c);
+    data->z = sensor->altitude;
+
+    return data;
+}

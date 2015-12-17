@@ -34,14 +34,21 @@ public:
     Pose3DI (const quadrotor::QuadRotorSensors *sensor);
     virtual ~Pose3DI ();
 
+    virtual
     jderobot::Pose3DDataPtr getPose3DData ( const Ice::Current& );
     Ice::Int setPose3DData ( const jderobot::Pose3DDataPtr & data,
                                      const Ice::Current& );
 
 
-private:
+protected:
     jderobot::Pose3DDataPtr data;
     const quadrotor::QuadRotorSensors *sensor;
+};
+
+class Pose3DI_altitude : public Pose3DI{
+public:
+    Pose3DI_altitude (const quadrotor::QuadRotorSensors *sensor): Pose3DI(sensor){}
+    jderobot::Pose3DDataPtr getPose3DData ( const Ice::Current& );
 };
 
 
