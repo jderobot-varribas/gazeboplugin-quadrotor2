@@ -96,6 +96,10 @@ QuadrotorControl::setTargetVelocity(Twist twist){
     velocity_command = twist;
 }
 
+void
+QuadrotorControl::teleport(gazebo::math::Pose pose){
+    base_link->GetModel()->SetWorldPose(pose);
+}
 
 
 void

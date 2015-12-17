@@ -46,6 +46,7 @@ public:
     void takeoff();
     void land();
     void setTargetVelocity(gazebo::math::Twist twist);
+    void teleport(gazebo::math::Pose pose);
 
     std::string _log_prefix;
 
