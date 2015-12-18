@@ -110,6 +110,11 @@ void
 QuadrotorControl::_update_state(const gazebo::common::UpdateInfo & /*_info*/){
     //Pose pose = base_link->GetWorldPose();
     double altitude = sensors->altitude;
+    /// **altitude** is a big deal due sensor limitations.
+    /// "real" sensor has a very tiny range (3 meters). It should
+    /// be merged with barometer to fit a real best hardware case.
+    /// otherways there is impossible to merge absolute obstacle aware
+    /// position with real altotude feedbak.
 
     switch(my_state){
     case Unknown:
