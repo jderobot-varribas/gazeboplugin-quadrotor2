@@ -63,6 +63,8 @@ protected:
     gazebo::math::Twist velocity_command;
 
     std::pair<double,double> fly_state_thresholds;
+    double takeoff_speed;
+    double land_speed;
 
     QuadRotorSensors *sensors;
 

@@ -38,6 +38,8 @@ QuadrotorControl::~QuadrotorControl(){
 
 }
 
+template <typename T> T sdf2value(const sdf::ElementPtr &_sdf, std::string _str){ return _sdf->GetElement(_str)->Get<T>(); }
+template <typename T> T sdf2value(const sdf::ElementPtr &_sdf, std::string _str, T _default){ if (_sdf->HasElement(_str)) return sdf2value<T>(_sdf, _str); else return _default; }
 
 void
 QuadrotorControl::Load(LinkPtr _base_link, sdf::ElementPtr _sdf){
@@ -45,8 +47,10 @@ QuadrotorControl::Load(LinkPtr _base_link, sdf::ElementPtr _sdf){
     inertial = _base_link->GetInertial();
     mass = inertial->GetMass();
 
-    fly_state_thresholds.first = 0.2;
-    fly_state_thresholds.second = 1.5;
+    fly_state_thresholds.first = sdf2value<double>(_sdf, "landCompletedAt", 0.2);
+    fly_state_thresholds.second = sdf2value<double>(_sdf, "takeoffCompletedAt", 1.5);
+    takeoff_speed = sdf2value<double>(_sdf, "takeoffSpeed", 3);
+    land_speed = sdf2value<double>(_sdf, "landSpeed", 1);
 
     controllers.roll.Load(_sdf, "rollpitch");
     controllers.pitch.Load(_sdf, "rollpitch");
