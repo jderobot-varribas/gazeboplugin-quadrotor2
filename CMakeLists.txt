@@ -9,11 +9,13 @@ include_directories(
 	${INTERFACES_CPP_DIR}
 	${GAZEBO_INCLUDE_DIRS}
 	${OpenCV_INCLUDE_DIRS}
+	${easyiceconfig_INCLUDE_DIRS}
 )
 
 link_directories(
 	${GAZEBO_LIBRARY_DIRS}
 	${INTERFACES_CPP_DIR}
+	${easyiceconfig_LIBRARY_DIRS}
 )
 
 
@@ -56,6 +58,7 @@ set_target_properties(${libname} PROPERTIES COMPILE_FLAGS "${GAZEBO_CXX_FLAGS}")
 target_link_libraries(${libname}
 	${ZeroCIce_LIBRARIES}
 	JderobotInterfaces
+	${easyiceconfig_LIBRARIES}
 )
 
 # Application

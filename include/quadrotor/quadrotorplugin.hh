@@ -26,6 +26,8 @@
 #include <gazebo/common/common.hh>
 #include <gazebo/math/Pose.hh>
 
+#include <easyiceconfig/EasyIce.h>
+
 #include <quadrotor/quadrotorsensors.hh>
 #include <quadrotor/quadrotorcontrol.hh>
 #include <quadrotor/quadrotorice.hh>
