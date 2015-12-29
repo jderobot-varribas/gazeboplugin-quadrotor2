@@ -36,7 +36,7 @@ QuadRotorSensors::~QuadRotorSensors(){
 void
 QuadRotorSensors::Load(ModelPtr model){
     this->model = model;
-    this->base_link_id = model->GetChildLink("base_link")->GetId();
+    this->base_link_id = model->GetChild(0)->GetId(); //independant of link name and namespacing
 
     SensorManager *sm = SensorManager::Instance();
 

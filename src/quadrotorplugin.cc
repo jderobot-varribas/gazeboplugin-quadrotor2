@@ -110,7 +110,7 @@ QuadrotorPlugin::Reset(){
 void
 QuadrotorPlugin::InitializeIce(sdf::ElementPtr _sdf){
     std::cout << _log_prefix << "QuadrotorPlugin::InitializeIce()" << std::endl;
-    std::string iceConfigFile = "quadrotorplugin.cfg";
+    std::string iceConfigFile = "quadrotorplugin2.cfg";
     if(_sdf->HasElement("iceConfigFile"))
         iceConfigFile =  _sdf->GetElement("iceConfigFile")->GetValue()->GetAsString();
     std::cout << _log_prefix << "\tconfig: "<< iceConfigFile << std::endl;
