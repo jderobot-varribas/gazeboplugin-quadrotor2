@@ -1,15 +1,19 @@
+cmake_minimum_required(VERSION 2.8.11)
+
+project(quadrotor2)
+set(libname gazebo_quadrotor2plugin)
 
 ## Dependencies
 include_directories(
-	${GAZEBO_INCLUDE_DIRS}
+	${ZeroCIce_INCLUDE_DIR}
 	${INTERFACES_CPP_DIR}
-	${LIBS_DIR}
+	${GAZEBO_INCLUDE_DIRS}
+	${OpenCV_INCLUDE_DIRS}
 )
 
 link_directories(
 	${GAZEBO_LIBRARY_DIRS}
 	${INTERFACES_CPP_DIR}
-	${LIBS_DIR}/visionlib/colorspaces
 )
 
 
@@ -20,24 +24,11 @@ include_directories(
 
 # Headers trick for IDEs
 file(GLOB_RECURSE quadrotor2_headers "include/**")
-add_library(quadrotor2_headers ${quadrotor2_headers})
+add_library(quadrotor2_headers EXCLUDE_FROM_ALL ${quadrotor2_headers})
 set_target_properties(quadrotor2_headers PROPERTIES LINKER_LANGUAGE CXX)
 
 
-#add_library(quadrotor2_ice_interfaces STATIC
-#	src/interfaces/pose3di.cpp
-#	src/interfaces/navdatai.cpp
-#)
-#target_link_libraries(quadrotor2_ice_interfaces
-#	Ice
-#	IceUtil
-#	JderobotInterfaces
-#	${ZeroCIce_LIBRARIES}
-#)
-
-
-
-add_library(quadrotorplugin2 SHARED
+add_library(${libname} SHARED
 	src/quadrotorplugin.cc
 	src/quadrotorsensors.cc
 	src/quadrotorcontrol.cc
@@ -58,25 +49,23 @@ add_library(quadrotorplugin2 SHARED
 )
 
 # Gazebo
-target_link_libraries(quadrotorplugin2 ${GAZEBO_libraries})
-set_target_properties(quadrotorplugin2 PROPERTIES COMPILE_FLAGS "${GAZEBO_CXX_FLAGS}")
+target_link_libraries(${libname} ${GAZEBO_libraries})
+set_target_properties(${libname} PROPERTIES COMPILE_FLAGS "${GAZEBO_CXX_FLAGS}")
 
 # Ice
-target_link_libraries(quadrotorplugin2
-	Ice
-	IceUtil
-	JderobotInterfaces
+target_link_libraries(${libname}
 	${ZeroCIce_LIBRARIES}
+	JderobotInterfaces
 )
 
 # Application
-target_link_libraries(quadrotorplugin2
-	${OpenCV_LIBS}
-	colorspacesmm
+target_link_libraries(${libname}
+	${OpenCV_LIBRARIES}
 )
 
-set_target_properties(quadrotorplugin2 PROPERTIES COMPILE_FLAGS "-Wall -Wextra")
+set_target_properties(${libname} PROPERTIES COMPILE_FLAGS "-Wall -Wextra")
 
-INSTALL (TARGETS quadrotorplugin2 DESTINATION share/jderobot/gazebo/plugins/quadrotor/)
+## Install
+INSTALL (TARGETS ${libname} DESTINATION share/jderobot/gazebo/plugins/quadrotor/)
 FILE(GLOB_RECURSE CFG_FILES ${CMAKE_CURRENT_SOURCE_DIR}/*.cfg)
 INSTALL (FILES ${CFG_FILES} DESTINATION share/jderobot/gazebo/plugins/quadrotor/)
