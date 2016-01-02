@@ -136,10 +136,11 @@ QuadrotorPlugin::InitializeIce(sdf::ElementPtr _sdf){
 
     /// Get port from model <name> (wolrd file, good enough)
     std::string name = model->GetName();
-    boost::regex re("[0-9]+$");
+    boost::regex re("-p[0-9]+$");
     boost::sregex_iterator eof, m1(name.begin(), name.end(), re);
     if (m1!=eof){
         port = (*m1)[0];
+        port = port.substr(2);
     }
     if (!port.empty())
         id.properties->setProperty("Quadrotor.Adapter.Endpoints", "tcp -h localhost -p "+port); //ToDo: use regex replace instead hardcored text.
