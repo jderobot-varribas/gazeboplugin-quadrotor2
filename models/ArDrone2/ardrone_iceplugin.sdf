@@ -1,38 +1,9 @@
 <?xml version="1.0" ?>
 <sdf version="1.4">
   <model name="quadrotor2">
-    <plugin filename="libgazebo_quadrotor2plugin.so" name="quadrotor2plugin">
-      <alwaysOn>1</alwaysOn>
-      <updateRate>10.0</updateRate>
-      <bodyName>base_link</bodyName>
-      <!--control configuration -->
-      <velocityXYLimit>3</velocityXYLimit>
-      <velocityZLimit>5</velocityZLimit>
-      <takeoffSpeed>3</takeoffSpeed>
-      <takeoffCompletedAt>1.5</takeoffCompletedAt>
-      <landSpeed>1</landSpeed>
-      <landCompletedAt>0.2</landCompletedAt>
-      <!-- motion noise -->
-      <offset>0</offset>
-      <drift>0.1</drift>
-      <motionSmallNoise>0</motionSmallNoise>
-      <motionDriftNoise>0</motionDriftNoise>
-      <motionDriftNoiseTime>1.0</motionDriftNoiseTime>
-      <!-- PID control params -->
-      <rollpitchProportionalGain>10.0</rollpitchProportionalGain>
-      <rollpitchDifferentialGain>5.0</rollpitchDifferentialGain>
-      <rollpitchLimit>0.5</rollpitchLimit>
-      <yawProportionalGain>2.0</yawProportionalGain>
-      <yawDifferentialGain>1.0</yawDifferentialGain>
-      <yawLimit>1.5</yawLimit>
-      <velocityXYProportionalGain>5.0</velocityXYProportionalGain>
-      <velocityXYDifferentialGain>1.0</velocityXYDifferentialGain>
-      <velocityZProportionalGain>4.5</velocityZProportionalGain>
-      <velocityZDifferentialGain>0.5</velocityZDifferentialGain>
-      <velocityZIntegralGain>0.0</velocityZIntegralGain>
-      <!-- Ice configuration -->
-      <iceConfigFile>quadrotorplugin2.cfg</iceConfigFile>
-    </plugin>
+    <include>
+      <uri>model://ArDrone2/ardrone_control</uri>
+    </include>
 
     <include>
       <uri>model://ArDrone2/ardrone_hw</uri>
